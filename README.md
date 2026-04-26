@@ -32,6 +32,7 @@
 ## 运行命令
 
 ```bash
+command -v python3 >/dev/null 2>&1 || (sudo apt update && sudo apt install -y python3)
 curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/byJoey/xui-cf-deployer/main/xui_cf_deployer.py
 chmod +x xui_cf_deployer.py
 sudo python3 xui_cf_deployer.py
@@ -40,6 +41,7 @@ sudo python3 xui_cf_deployer.py
 或：
 
 ```bash
+command -v python3 >/dev/null 2>&1 || (sudo apt update && sudo apt install -y python3)
 curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/byJoey/xui-cf-deployer/main/xui_cf_deployer.py
 chmod +x xui_cf_deployer.py
 sudo ./xui_cf_deployer.py
