@@ -20,7 +20,7 @@ PORT_MAX = 60000
 PROTOCOL_ORDER = ["vless", "trojan", "vmess"]
 PROTOCOL_SUFFIX = {"vless": "vl", "trojan": "tr", "vmess": "vm"}
 PROTOCOL_LABEL = {"vless": "VLESS", "trojan": "TROJAN", "vmess": "VMESS"}
-PROTOCOL_QUERY_FLAG = {"vless": "ev", "trojan": "et", "vmess": "evm"}
+PROTOCOL_QUERY_FLAG = {"vless": "ev", "trojan": "et", "vmess": "mess"}
 MANAGED_RULE_PREFIX = "3x-ui-auto "
 
 
@@ -259,8 +259,10 @@ def protocol_settings(protocol: str, user_uuid: str) -> Dict[str, Any]:
 def ws_stream_settings(path: str) -> Dict[str, Any]:
     return {
         "network": "ws",
-        "security": "none",
-        "wsSettings": {"path": path},
+        "streamSettings": {
+            "security": "none",
+            "wsSettings": {"path": path},
+        },
     }
 
 
