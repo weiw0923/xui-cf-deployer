@@ -487,8 +487,13 @@ def restart_xui() -> None:
         sys.exit(1)
 
 
-def build_links(user_uuid: str, domain: str, routes: List[Dict[str, Any]]) -> Dict[str, str]:
-    base_url = f"https://yxauto.wilhelm.qzz.io/{user_uuid}/sub"
+DEFAULT_SUB_URL = "https://yxauto.wilhelm.qzz.io"
+
+
+def build_links(
+    user_uuid: str, domain: str, routes: List[Dict[str, Any]], sub_base: str = DEFAULT_SUB_URL
+) -> Dict[str, str]:
+    base_url = f"{sub_base.rstrip('/')}/{user_uuid}/sub"
     common = {
         "domain": domain,
         "epd": "yes",
@@ -714,7 +719,12 @@ def main() -> None:
         }
     )
 
-    links = build_links(user_uuid, domain, routes)
+    sub_url_raw = input(
+        f"订阅生成地址(回车使用默认 {DEFAULT_SUB_URL}，或输入自定义地址): "
+    ).strip()
+    sub_base = sub_url_raw if sub_url_raw else DEFAULT_SUB_URL
+
+    links = build_links(user_uuid, domain, routes, sub_base=sub_base)
     print("成功")
     for protocol in selected_protocols:
         print(f"{PROTOCOL_LABEL[protocol]}订阅 {links[protocol]}")
