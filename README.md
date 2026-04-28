@@ -5,7 +5,7 @@
 - 按需创建 VLESS / Trojan / VMess 节点
 - 写入 3x-ui SQLite 数据库并重启 `x-ui`
 - 配置 Cloudflare DNS、SSL、Origin Rules
-- 生成 `yx-auto.pages.dev` 订阅链接
+- 生成订阅链接（支持默认或自定义订阅地址）
 - 检测上次配置并支持一键卸载回滚
 
 ## 前置条件（必须）
@@ -33,7 +33,7 @@
 
 ```bash
 command -v python3 >/dev/null 2>&1 || (sudo apt update && sudo apt install -y python3)
-curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/byJoey/xui-cf-deployer/main/xui_cf_deployer.py
+curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/weiw0923/xui-cf-deployer/main/xui_cf_deployer.py
 chmod +x xui_cf_deployer.py
 sudo python3 xui_cf_deployer.py
 ```
@@ -42,7 +42,7 @@ sudo python3 xui_cf_deployer.py
 
 ```bash
 command -v python3 >/dev/null 2>&1 || (sudo apt update && sudo apt install -y python3)
-curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/byJoey/xui-cf-deployer/main/xui_cf_deployer.py
+curl -fsSL -o xui_cf_deployer.py https://raw.githubusercontent.com/weiw0923/xui-cf-deployer/main/xui_cf_deployer.py
 chmod +x xui_cf_deployer.py
 sudo ./xui_cf_deployer.py
 ```
@@ -62,6 +62,7 @@ sudo ./xui_cf_deployer.py
 2. Cloudflare 邮箱
 3. Cloudflare Global API Key（隐藏输入）
 4. 创建协议（`1=vless,2=trojan,3=vmess`，逗号分隔，回车=全部）
+5. 订阅生成地址（回车使用默认值，或输入自定义地址）
 
 脚本会自动：
 
